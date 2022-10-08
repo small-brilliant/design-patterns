@@ -3,6 +3,7 @@ package builder
 import "testing"
 
 func TestBuilder(t *testing.T) {
+	// 使用消息建造者进行对象创建
 	message := Builder().
 		WithSrcAddr("192.168.0.1").
 		WithSrcPort(1234).
