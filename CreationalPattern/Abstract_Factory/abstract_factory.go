@@ -2,34 +2,49 @@ package abstractfactory
 
 import "fmt"
 
-type Lunch interface {
-	Cook()
-}
-type rise struct{}
-
-func (r *rise) Cook() {
-	fmt.Println("煮米饭")
+type Fruit interface {
+	Show()
 }
 
-type Tomato struct{}
-
-func (t *Tomato) Cook() {
-	fmt.Println("炒土豆丝")
+type Factory interface {
+	CreateFruit() Fruit
 }
 
-type LunchFactory interface {
-	CreateFood() Lunch
-	CreateVegetable() Lunch
-}
-type SimpleLunchFactory struct{}
+// apple
+type Apple struct{}
 
-func (s *SimpleLunchFactory) CreateFood() Lunch {
-	return &rise{}
-}
-func (s *SimpleLunchFactory) CreateVegetable() Lunch {
-	return &Tomato{}
+func (a *Apple) Show() {
+	fmt.Println("我是苹果")
 }
 
-func NewSimpleLuchFactory() LunchFactory {
-	return &SimpleLunchFactory{}
+type AppleFactory struct{}
+
+func (af *AppleFactory) CreateFruit() Fruit {
+	return new(Apple)
+}
+
+// Banana
+type Banana struct{}
+
+func (a *Banana) Show() {
+	fmt.Println("我是苹果")
+}
+
+type BananaFactory struct{}
+
+func (af *BananaFactory) CreateFruit() Fruit {
+	return new(Banana)
+}
+
+// Banana
+type Pear struct{}
+
+func (a *Pear) Show() {
+	fmt.Println("我是苹果")
+}
+
+type PearFactory struct{}
+
+func (af *PearFactory) CreateFruit() Fruit {
+	return new(Pear)
 }
